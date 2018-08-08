@@ -38,7 +38,8 @@ export class BookRentalComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['../rentals'])
+    //this.router.navigate(['../rentals'])
+    this.router.navigate(['../rentals/' + this.rental.rentalType.toLocaleLowerCase()])
   }
 
   bookaccommodation(formValues) {
