@@ -1,0 +1,18 @@
+
+<div class="well" (click)="showDetails(rental)" class="well hoverwell thumbnail" [ngClass]="!rental?.active ? 'inActive' : ''">
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-thumbnail" [src]="rental?.imageurl" [alt]="rental?.name">
+    </div>
+    <div class="col-md-6">
+      <div>
+        <h3>
+          <b> Name : {{rental?.name | uppercase }} </b>
+        </h3>
+      </div>
+      <div>
+        <h4>Type : {{ rental?.rentalType | uppercase}}</h4>
+      </div>
+    </div>
+  </div>
+</div>

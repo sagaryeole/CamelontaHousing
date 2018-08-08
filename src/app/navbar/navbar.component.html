@@ -1,0 +1,27 @@
+<div class="navbar navbar-default fixed-top navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Camelonta Housing</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navCollapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a [routerLink]="['/rentals']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <span class="glyphicon glyphicon-home "></span> All Rentals</a>
+        </li>
+
+        <li *ngFor="let type of RentalTypes">
+          <a [routerLink]="['/rentals/'+ type.name.toLocaleLowerCase()]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            {{type?.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

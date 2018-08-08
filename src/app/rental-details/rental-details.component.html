@@ -1,0 +1,40 @@
+<div class="well">
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-thumbnail" [src]="rental?.imageurl" [alt]="rental?.name">
+    </div>
+    <div class="col-md-6">
+      <div style="padding-bottom: 20px;">
+        <h3>
+          <b> Name : {{rental?.name | uppercase }} </b>
+          
+        </h3>
+        
+      </div>
+      <div>
+        <h4>Type : {{rental?.rentalType | uppercase}}</h4>
+      </div>
+      <div>
+        <h4>Price : {{ rental?.price | currency: 'SEK'}}</h4>
+      </div>
+      <div>
+        <address>
+          <h4>
+            Address:
+            <span> {{rental?.location.address}}</span>
+            <span> {{rental?.location.city}},</span>
+            <span> {{rental?.location.country}}</span>
+          </h4>
+        </address>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <button class="btn btn-info btn-lg" (click)="cancel()">Back</button> <span style="padding-right: 20px;">&nbsp;</span>
+      <button class="btn btn-primary btn-lg" (click)="bookaccommodation(rental?.id)" [disabled]="!rental?.active" >Book</button>
+    </div>
+  </div>
+</div>

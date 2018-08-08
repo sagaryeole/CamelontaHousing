@@ -1,0 +1,84 @@
+<div class="well" *ngIf="!confirm">
+  <form #accommodationForm="ngForm" (ngSubmit)="bookaccommodation(accommodationForm.value)" novalidate>
+    <div class="row form-group">
+      <div class="col-md-6">
+        <img class="img-thumbnail" [src]="rental?.imageurl" [alt]="rental?.name">
+      </div>
+      <div class="col-md-6">
+        <div style="padding-bottom: 20px;">
+          <h3>
+            <b> Name : {{rental?.name | uppercase }} </b>
+          </h3>
+        </div>
+        <div>
+          <h4>Type : {{rental?.rentalType | uppercase}}</h4>
+        </div>
+        <div>
+          <h4>Price :
+            <span class="alert-success"> {{ rental?.price | currency: 'SEK'}} </span>
+          </h4>
+        </div>
+        <div>
+            <em *ngIf="invalidaDates">From date can not be more than To date</em>
+          <div class="form-group" [ngClass]="{'error': accommodationForm.controls.fromDate?.invalid 
+                      && accommodationForm.controls.fromDate?.touched}">
+            <label for="fromDate">From Date:</label>
+            <em *ngIf="accommodationForm.controls.fromDate?.invalid && (accommodationForm.controls.fromDate?.touched)">Required</em>
+            <input (blur)="calculateBookingPrice(accommodationForm.value)" (ngModel)="newbooking.fromDate" name="fromDate" required id="fromDate"
+              type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+          </div>
+          <div class="form-group" [ngClass]="{'error': accommodationForm.controls.toDate?.invalid 
+          && accommodationForm.controls.toDate?.touched}">
+            <label for="toDate">To Date:</label>
+            <em *ngIf="accommodationForm.controls.toDate?.invalid && (accommodationForm.controls.toDate?.touched)">Required</em>
+            <input (blur)="calculateBookingPrice(accommodationForm.value)" (ngModel)="newbooking.toDate" name="toDate" required id="toDate"
+              type="text" class="form-control" placeholder="format (mm/dd/yyyy)..." />
+          </div>
+          <div class="form-group" [ngClass]="{'error': accommodationForm.controls.personNumber?.invalid 
+              && accommodationForm.controls.personNumber?.touched}">
+            <label for="personNumber">Person Number:</label>
+            <em *ngIf="accommodationForm.controls.personNumber?.invalid && (accommodationForm.controls.personNumber?.touched)">Required</em>
+            <input (blur)="calculateBookingPrice(accommodationForm.value)" (ngModel)="newbooking.personNumber" name="personNumber" required
+              id="personNumber" type="text" class="form-control" placeholder="format (YYYYMMDDNNNN)" />
+          </div>
+
+          <div class="form-group" *ngIf="bookingPrice > 0">
+            <br>
+            <h4>
+              <b> Booking Price: {{ bookingPrice | currency: 'SEK' }}</b>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8"></div>
+      <div class="col-md-4">
+        <button class="btn btn-info btn-lg" (click)="cancel()">Back</button>
+        <span style="padding-right: 20px;">&nbsp;</span>
+        <button class="btn btn-primary  btn-lg" type="submit" [disabled]="accommodationForm.invalid">Book</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="well alert alert-success" *ngIf="confirm" style="margin-top: 10%;">
+  <h1>
+    Congratulations !!
+  </h1>
+
+  <div>
+    <h2>
+      Accommodation
+      <b> {{ rental.name }} </b> is reserved for
+      <b> {{bookingDays}} days </b> from
+      <b> {{ fromdate | date:'shortDate' }} </b> to
+      <b> {{ todate | date:'shortDate'}}</b>
+      at price
+      <b> {{ bookingPrice | currency: 'SEK'}}</b>
+    </h2>
+    <br>
+    <h3>Your reservation reference number is <b> {{reservationNumber}}</b></h3>
+  </div>
+
+</div>
