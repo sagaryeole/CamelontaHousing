@@ -64,7 +64,8 @@ export class BookRentalComponent implements OnInit {
       else {
         this.invalidaDates = false
         this.bookingDays = Math.round(Math.abs(timeDiff / (1000 * 60 * 60 * 24)));
-        this.bookingPrice = (this.rental.price * this.bookingDays * this.rental.multiplyFactor)
+        //this.bookingPrice = (this.rental.price * this.bookingDays * this.rental.multiplyFactor)
+        this.bookingPrice = this.rentalDataService.calculatePrice(this.bookingDays, this.rental.rentalTypeId)
         return true
       }
     }

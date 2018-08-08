@@ -1,6 +1,7 @@
 export interface IRental {
     id: number
     rentalType: string
+    rentalTypeId : number
     name: string
     price: number
     imageurl: string

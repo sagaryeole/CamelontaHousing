@@ -9,5 +9,3 @@
     li> a.active {
         color: #F97924
     }
-    
-    @media (max-width : 1200px) {#searcForm {display: none;}}

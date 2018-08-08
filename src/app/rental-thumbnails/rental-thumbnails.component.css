@@ -11,3 +11,8 @@ a{
 {
     color: red;
 }
+
+
+.thumb{
+    cursor: pointer;
+}

@@ -13,11 +13,11 @@
         <div>
           <h4>Type : {{rental?.rentalType | uppercase}}</h4>
         </div>
-        <div>
+        <!-- <div>
           <h4>Price :
             <span class="alert-success"> {{ rental?.price | currency: 'SEK'}} </span>
           </h4>
-        </div>
+        </div> -->
         <div>
             <em *ngIf="invalidaDates">From date can not be more than To date</em>
           <div class="form-group" [ngClass]="{'error': accommodationForm.controls.fromDate?.invalid 
@@ -42,11 +42,10 @@
               id="personNumber" type="text" class="form-control" placeholder="format (YYYYMMDDNNNN)" />
           </div>
 
-          <div class="form-group" *ngIf="bookingPrice > 0">
-            <br>
-            <h4>
+          <div class="form-group alert alert-info text-center " *ngIf="bookingPrice > 0">
+            <h3>
               <b> Booking Price: {{ bookingPrice | currency: 'SEK' }}</b>
-            </h4>
+            </h3>
           </div>
         </div>
       </div>
